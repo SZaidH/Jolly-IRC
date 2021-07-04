@@ -1,38 +1,232 @@
-.App {
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/* JIRC App Container */
+.container{
+  height: 100vh;
+  display: flex;
+}
+
+/* Channel Bar */
+.channel-bar{
+  background-color: #3D4551;
+  height: 100vh;
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-details{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-avatar{
+  border: 1px solid #22FC8F;
+  min-height: 80px;
+  min-width: 80px;
+}
+
+.user-details h2{
+ font-family: Roboto;
+ margin-top: 10px; 
+ font-size: 20px;
+ font-weight: 400;
+ color: #22FC8F;
+ text-align: center;
+}
+
+.channel-list{
+  margin-top: 30px;
+  overflow: auto;
+  height: 60vh;
+}
+
+.channel-list ul{
+  list-style: none;
+}
+
+.channel-list li{
+  border: 1px solid #6B778A;
+  border-left: 4px solid #FFFFFF;
+  border-right: none;
+  border-radius: 1px;
+  font-family: Roboto;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.channel-list li:hover{
+  background-color: #6B778A;
+}
+
+.selected-channel{
+  border-left: 4px solid #22FC8F !important;
+  background-color: #6B778A;
+}
+
+.channel-list a{
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.channel-create{
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  width: inherit;
+}
+
+.channel-create button{
+  background-color: #22FC8F;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  color: #3D4551;
+}
+
+.channel-create .create-button-icon{
+  margin-right: 3px;
+  min-height: 30px;
+  min-width: 30px;
+}
+
+/* Chat Section */
+.chat-section{
+  background-color: bisque;
+  height: 100vh;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header{
+  background-color: #FFFFFF;
+  border-top: 4px solid #22FC8F;
+  display: flex;
+  padding: 10px;
+  filter: drop-shadow(0 0.1rem 0.25rem rgba(0, 0, 0, 0.2));
+  align-items: center;
+}
+
+.channel-name{
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.chat-header span{
+  font-family: 'Open Sans';
+  font-size: 15px;
+}
+
+.chat-area{
+  flex-grow: 1;
+  background-color: bisque;
+  background-image: url("./img/background.png");
+  background-repeat: repeat;
+}
+
+.chat-message-member{
+  background-color: #FFFFFF;
+  margin: 8px 5px;
+  padding: 5px;
+  font-family: "Open Sans";
+  font-size: 0.9em;
+  border-left: 3px solid #3D4551;
+  border-radius: 2px;
+}
+
+.chat-message-user{
+  background-color: #FFFFFF;
+  margin: 8px 5px;
+  padding: 5px;
+  font-family: "Open Sans";
+  font-size: 0.9em;
+  border-left: 3px solid #22FC8F;
+  border-radius: 2px;
+}
+
+.chat-details{
+  font-weight: 600;
+}
+
+.chat-input{
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  width: inherit;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-input input[type=text]{
+  width: 100%;
+  padding: 5px;
+  border-radius: 20px;
+  border: 2px solid #22FC8F;
+}
+
+/* Member Bar */
+.member-bar{
+  background-color: #FFFFFF;
+  height: 100vh;
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+}
+
+.member-header{
+  margin-top: 10px;
+  display:flex;
+  flex-direction: column;
+  font-family: "Open Sans";
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.member-header h2{
+  font-size: 1em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.member-header h3{
+  font-size: 1em;
+  color: #3D4551;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.member-list{
+  margin-top: 10px;
+  overflow: auto;
+}
+
+.member-list ul{
+  list-style: none;
+}
+
+.member-list li{
+  font-family: Roboto;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.member-item{
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.member-item p{
+  margin-left: 5px;
 }
