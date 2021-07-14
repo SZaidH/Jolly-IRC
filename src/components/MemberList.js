@@ -1,28 +1,30 @@
 import React from 'react'
 import { Avatar } from '@material-ui/core'
 
-function MemberList() {
+function MemberList({ members }) {
+
+  const memberObj = {};
+  // Looping through the members state to push the unique members (eliminating redundancy) to the member object
+  members.forEach(element => {
+    if (!memberObj[element.member]) {
+      memberObj[element.member] = element.member;
+    }
+  });
+
+  const memberList = Object.keys(memberObj).map((memberKey, i) => (
+    <li key={i}>
+      <div className="member-item">
+        {/* Passing the member key to the Dicebear API URL to fetch initials for the User Avatar */}
+        <Avatar alt="Member Picture" className="member-avatar" src={`https://avatars.dicebear.com/api/initials/${memberObj[memberKey]}.svg`} />
+        <p>{memberObj[memberKey]}</p>
+      </div>
+    </li>
+  ))
+
   return (
     <div className="member-list">
       <ul>
-        <li>
-          <div className="member-item">
-            <Avatar alt="Member Picture" className="member-avatar" src="https://avatars.dicebear.com/api/male/abd.svg" />
-            <p>John Doe</p>
-          </div>
-        </li>
-        <li>
-          <div className="member-item">
-            <Avatar alt="Member Picture" className="member-avatar" src="https://avatars.dicebear.com/api/female/abd.svg" />
-            <p>Jane Doe</p>
-          </div>
-        </li>
-        <li>
-          <div className="member-item">
-            <Avatar alt="Member Picture" className="member-avatar" src="https://avatars.dicebear.com/api/male/aef.svg" />
-            <p>Jake Doe</p>
-          </div>
-        </li>
+        {!memberObj ? null : memberList}
       </ul>
     </div>
   )

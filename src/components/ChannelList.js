@@ -1,15 +1,34 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+//Firebase DB config
+import db from '../firebase'
+// Router Link
+import { NavLink } from 'react-router-dom';
 
 function ChannelList() {
+  const [channels, setChannels] = useState([]);
+
+  useEffect(() => {
+    db.collection('channels').onSnapshot(snapshot => {
+      setChannels(snapshot.docs.map(doc => ({
+        id: doc.id,
+        data: doc.data()
+      })
+      ))
+    })
+  }, []);
+
   return (
     <div className="channel-list">
       <ul>
-        <li className="selected-channel"><a href="#">Gaming Room</a></li>
-        <li><a href="#" className="channel-link">TV and Music</a></li>
-        <li><a href="#" className="channel-link">Tech Hub</a></li>
-        <li><a href="#" className="channel-link">Cooking Corner</a></li>
-        <li><a href="#" className="channel-link">Art and Craft</a></li>
-        <li><a href="#" className="channel-link">Business</a></li>
+        {channels.map(channel => (
+          <NavLink to={`/channels/${channel.id}`} key={channel.id} activeClassName='selected-channel' style={{ textDecoration: 'none' }}>
+            <li key={channel.id} id={channel.id} className="channel-link">
+              {channel.data.name}
+            </li>
+          </NavLink>
+        ))
+        }
       </ul>
     </div>
   )

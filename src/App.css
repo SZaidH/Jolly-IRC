@@ -23,10 +23,11 @@
   margin-top: 30px;
   justify-content: center;
   align-items: center;
+  height: 20%;
 }
 
 .user-avatar{
-  border: 1px solid #22FC8F;
+  border: 2px solid #22FC8F;
   min-height: 80px;
   min-width: 80px;
 }
@@ -43,7 +44,7 @@
 .channel-list{
   margin-top: 30px;
   overflow: auto;
-  height: 60vh;
+  height: 60%;
 }
 
 .channel-list ul{
@@ -58,20 +59,25 @@
   font-family: Roboto;
   padding: 10px;
   margin-bottom: 10px;
+  color: #FFFFFF;
+  cursor: pointer;
 }
 
 .channel-list li:hover{
   background-color: #6B778A;
 }
 
-.selected-channel{
-  border-left: 4px solid #22FC8F !important;
-  background-color: #6B778A;
-}
-
-.channel-list a{
-  text-decoration: none;
+.selected-channel li{
+  border: 1px solid #6B778A;
+  border-left: 4px solid #22FC8F;
+  border-right: none;
+  border-radius: 1px;
+  font-family: Roboto;
+  padding: 10px;
+  margin-bottom: 10px;
   color: #FFFFFF;
+  cursor: pointer;
+  background-color: #6B778A;
 }
 
 .channel-create{
@@ -79,12 +85,13 @@
   bottom: 0;
   background-color: white;
   width: inherit;
+  height: 7%;
 }
 
 .channel-create button{
   background-color: #22FC8F;
-  height: 50px;
   width: 100%;
+  height: 100%;
   cursor: pointer;
   border: none;
   display: flex;
@@ -118,6 +125,7 @@
   padding: 10px;
   filter: drop-shadow(0 0.1rem 0.25rem rgba(0, 0, 0, 0.2));
   align-items: center;
+  height: 8%;
 }
 
 .channel-name{
@@ -133,10 +141,12 @@
 }
 
 .chat-area{
-  flex-grow: 1;
+  height: 85%;
   background-color: bisque;
   background-image: url("./img/background.png");
   background-repeat: repeat;
+  overflow: auto;
+  min-width: 0;
 }
 
 .chat-message-member{
@@ -168,7 +178,7 @@
   bottom: 0;
   background-color: white;
   width: inherit;
-  height: 50px;
+  height: 7%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -179,6 +189,10 @@
   padding: 5px;
   border-radius: 20px;
   border: 2px solid #22FC8F;
+}
+
+.chat-input button{
+  display: none;
 }
 
 /* Member Bar */
@@ -229,4 +243,49 @@
 
 .member-item p{
   margin-left: 5px;
+}
+
+/* User Login */
+.user-login{
+  background-color: bisque;
+  background-image: url("./img/background.png");
+  background-repeat: repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #707070;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  width: auto;
+  font-family: "Open Sans";
+  font-weight: bold;
+}
+
+.login-container h3{
+  margin: 15px 0px;
+}
+
+.login-container img{
+  height: 50%;
+  width: 50%;
+}
+
+.login-container button{
+  background-color: #22FC8F;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #3D4551;
+  cursor: pointer;
 }

@@ -1,17 +1,57 @@
 import React from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useParams } from 'react-router-dom';
+import db from '../firebase';
+// Zustand (State Management) store
+import useStore from '../store'
 
 function ChatArea() {
+  const [messages, setMessages] = useState([]);
+  const { channelID } = useParams();
+  const userName = useStore(state => state.userName);
+  const messagesEndRef = useRef(null);
+
+  // Function which forces the component selected to be scrolled to the bottom
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    if (channelID) {
+      db.collection("channels")
+        .doc(channelID)
+        .collection("messages")
+        .orderBy("timestamp", "asc")
+        .onSnapshot(snapshot =>
+          setMessages(snapshot.docs.map(doc =>
+            doc.data()
+          )
+          )
+        )
+    }
+  }, [channelID]);
+
+  const messageList = messages.map((message, index) => (
+    <div key={index} className={message.member === userName ? "chat-message-user" : "chat-message-member"}>
+      <span className="chat-details">
+        [{new Date(message.timestamp?.toDate()).getHours()} : {new Date(message.timestamp?.toDate()).getMinutes()}] - {message.member} -
+      </span>
+      <span className="member-message"> {message.message}</span>
+    </div>
+  ))
+
   return (
     <div className="chat-area">
-      <div className="chat-message-user">
-        <span className="chat-details">[10:15] - John Doe - </span><span className="member-message">Hello Everyone!</span>
-      </div>
-      <div className="chat-message-member">
-        <span className="chat-details">[10:17] - Jane Doe - </span><span className="member-message">Yay! New channel hype!</span>
-      </div>
-      <div className="chat-message-member">
-        <span className="chat-details">[10:17] - Jake Doe - </span><span className="member-message">Played any fun games lately?</span>
-      </div>
+      {
+        messages === "" ?
+          null :
+          messageList
+      }
+      <div ref={messagesEndRef} />
     </div>
   )
 }
