@@ -21,8 +21,8 @@ function ChannelCreate() {
   }
 
   return (
-    <div className="channel-create">
-      <button onClick={createChannel}><AddCircleIcon className="create-button-icon" />Create Channel</button>
+    <div className="channel-create" onClick={createChannel}>
+      <button ><AddCircleIcon className="create-button-icon" />Create Channel</button>
     </div>
   )
 }

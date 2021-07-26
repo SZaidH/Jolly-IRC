@@ -2,9 +2,11 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import db from './firebase';
 // Components
 import ChannelBar from './components/ChannelBar';
 import ChatSection from './components/ChatSection';
@@ -14,6 +16,13 @@ import UserLogin from './components/UserLogin';
 function App() {
   // State responsible for tracking user name
   const [user, setUser] = useState(null);
+  const [initialChannel, setInitialChannel] = useState([]);
+
+  useEffect(() => {
+    db.collection("channels").limit(1).get().then((querySnapshot) => {
+      setInitialChannel(querySnapshot.docs[0].id);
+    });
+  }, [user]);
 
   return (
     <div className="App">
@@ -22,6 +31,7 @@ function App() {
       ) : (
         <div className="container">
           <Router>
+            <Redirect to={`/channels/${initialChannel}`} />
             <Switch>
               <Route path="/channels/:channelID">
                 <ChannelBar />
