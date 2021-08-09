@@ -363,6 +363,58 @@
   .chat-header span{
     font-size: 20px;
   }
+  .channel-bar{
+    display: none;
+  }
+
+  .chat-section{
+    width: 100%;
+  }
+  .chat-header{
+    height: 6%;
+    justify-content: center;
+  }
+  .channel-name{
+    font-size: 15px;
+  }
+  .chat-header span{
+    font-size: 13px;
+  }
+  .chat-area{
+    height: 87%;
+  }
+
+  .chat-header .menu-icon{
+    display: inline;
+    margin-right: auto;
+    cursor: pointer;
+  }
+  .chat-header .menu-icon:active{
+    background-color: #707070;
+    border-radius: 20px;
+    color: white;
+  }
+  .chat-header .group-icon{
+    display: inline;
+    margin-left: auto;
+    cursor: pointer;
+  }
+  .chat-header .group-icon:active{
+    background-color: #707070;
+    border-radius: 20px;
+    color: white;
+  }
+
+  .chat-input{
+    position: sticky;
+    padding: 10px;
+  }
+  .member-bar{
+    display: none;
+  }
+  .channel-create{
+    position: sticky;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

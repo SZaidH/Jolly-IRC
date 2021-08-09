@@ -18,11 +18,21 @@ function ChannelList() {
     })
   }, []);
 
+  const closeChannel = () => {
+    const channelBarOverlay = document.querySelector(".channel-bar");
+    channelBarOverlay.classList.remove("channel-bar-overlay");
+
+    const chatSectionOverlay = document.querySelector(".chat-section");
+    chatSectionOverlay.classList.remove("chat-section-overlay");
+
+    document.querySelector(".close-channel").style.display = "none";
+  };
+
   return (
     <div className="channel-list">
       <ul>
         {channels.map(channel => (
-          <NavLink to={`/channels/${channel.id}`} key={channel.id} activeClassName='selected-channel' style={{ textDecoration: 'none' }}>
+          <NavLink to={`/channels/${channel.id}`} key={channel.id} activeClassName='selected-channel' style={{ textDecoration: 'none' }} onClick={() => closeChannel()}>
             <li key={channel.id} id={channel.id} className="channel-link">
               {channel.data.name}
             </li>
@@ -30,7 +40,7 @@ function ChannelList() {
         ))
         }
       </ul>
-    </div>
+    </div >
   )
 }
 
